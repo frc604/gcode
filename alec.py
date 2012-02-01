@@ -11,7 +11,7 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 	If not hole, pocket
 	"""
 	if (not hole) and (not inside):
-		raise 'WTF'
+		print 'WTF'
 	r = .5*diameter
 	t_r = .5*t_diameter
 	c_x = centerpt[0]
@@ -58,11 +58,11 @@ if __name__ == "__main__":
 		z_depth = input('z_depth=')
 		rapid_h = input('rapid_h=')
 		in_ans = raw_input('Inside or Outside? [I/o] ')
-		inside = in_ans.lower() == 'o'
+		inside = in_ans.lower() != 'o'
 		sp_ans = raw_input('Spiral or Plunge? [S/p] ')
-		spiral = sp_ans.lower() == 'p'
+		spiral = sp_ans.lower() != 'p'
 		hole_ans = raw_input('Hole or Pocket? [H/p] ')
-		hole = hole_ans.lower() == 'p'
+		hole = hole_ans.lower() != 'p'
 		circle(diameter=diameter, centerpt=cp, t_diameter=t_diameter, d_cut=d_cut, z_depth=z_depth, rapid_h=rapid_h, inside=inside, spiral=spiral, hole=hole)
 	
 	
