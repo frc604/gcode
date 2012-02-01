@@ -40,25 +40,44 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 			print 'G17 G03 I%s' %(i_value)
 			print 'G00 Z%s' %(rapid_h)
 	"""		
-	
 	if inside:
 		G023 = 'G03'
 	else:
 		G023 = 'GO2'
 	print 'G00 X%s Y%s' %(round(new_x, 4), round(c_y, 4))
 	print 'G01 F10 Z%s' %(round(c_z, 4))
-	while d_cut <= z_depth:
-		print 'G17 %s I%s Z-%s' %(G023, round(i_value, 4), round(d_cut, 4))
+	z_new = c_z - z_depth
+	down = d_initial
+	while down <= z_depth:
+		if spiral:
+			print 'G17 %s I%s Z%s' %(G023, round(i_value, 4), round(c_z-d_cut, 4))
+		else:
+			print 'G01 Z%s' %(round(c_z-d_cut, 4))
+			print 'G17 %s I%s' %(G023, round(i_value, 4))
+        
 		d_cut += d_initial
+		down += d_initial
+	"""
+	while d_cut <= z_depth:
+		print 'G17 %s I%s Z%s' %(G023, round(i_value, 4), round(c_z-d_cut, 4))
+		d_cut += d_initial
+        """
 	if d_cut != z_depth:
-		print 'G17 %s I%s Z-%s' %(G023, round(i_value, 4), round(z_depth, 4))
-	print 'G17 %s I%s' %(G023, round(i_value, 4))
+		if spiral:
+			print 'G17 %s I%s Z%s' %(G023, round(i_value, 4), round(c_z-z_depth, 4))
+		else:
+			print 'G01 Z%s' %(round(c_z-z_depth, 4))
+			print 'G17 %s I%s' %(G023, round(i_value, 4))
+	if spiral:
+		print 'G17 %s I%s' %(G023, round(i_value, 4))
 	print 'G00 Z%s' %(round(rapid_h, 4))
 	
 	
 	
 		
 if __name__ == "__main__":
+        circle(diameter=10, centerpt=[1,1,-1], t_diameter=5, d_cut=.26, z_depth=10, rapid_h=1, inside=True, spiral=True, hole=True)
+"""
 	while True:
 		diameter=input('Diameter of circle=')
 		cp_x = input('Centerpoint, x-coord: =')
@@ -77,10 +96,4 @@ if __name__ == "__main__":
 		hole = hole_ans.lower() != 'p'
 		circle(diameter=diameter, centerpt=cp, t_diameter=t_diameter, d_cut=d_cut, z_depth=z_depth, rapid_h=rapid_h, inside=inside, spiral=spiral, hole=hole)
 	
-	
-	
-	
-	
-	
-	
-	
+"""
