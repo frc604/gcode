@@ -17,7 +17,10 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 	c_x = centerpt[0]
 	c_y = centerpt[1]
 	c_z = centerpt[2]
-	i_value = r - t_r
+	if inside:
+		i_value = r - t_r
+	else:
+		i_value = r + t_r
 	d_initial = d_cut
 	if inside and hole:
 		new_x = c_x - r + t_r
