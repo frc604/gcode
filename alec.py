@@ -47,7 +47,23 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 	
 		
 if __name__ == "__main__":
-#	circle(diameter=, centerpt=[1.0000,y,z], t_diameter=, d_cut=, z_depth=, rapid_h=, inside=True, spiral=True, hole=True)
+	while True:
+		diameter=input('Diameter of circle=')
+		cp_x = input('Centerpoint, x-coord: =')
+		cp_y = input('Centerpoint, y-coord: =')
+		cp_z = input('Centerpoint, z-coord: =')
+		cp = [cp_x, cp_y, cp_z]
+		t_diameter = input('Tool diameter=')
+		d_cut = input('d_cut=')
+		z_depth = input('z_depth=')
+		rapid_h = input('rapid_h=')
+		in_ans = raw_input('Inside or Outside? [I/o] ')
+		inside = in_ans.lower() == 'o'
+		sp_ans = raw_input('Spiral or Plunge? [S/p] ')
+		spiral = sp_ans.lower() == 'p'
+		hole_ans = raw_input('Hole or Pocket? [H/p] ')
+		hole = hole_ans.lower() == 'p'
+		circle(diameter=diameter, centerpt=cp, t_diameter=t_diameter, d_cut=d_cut, z_depth=z_depth, rapid_h=rapid_h, inside=inside, spiral=spiral, hole=hole)
 	
 	
 	
