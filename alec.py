@@ -1,6 +1,7 @@
 import sys, math
 
-
+class WTF(Exception):
+	"""WTF are you doing."""
 
 def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True, spiral=True, hole=True):
 	"""
@@ -10,6 +11,8 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 	If not spiral, plunge
 	If not hole, pocket
 	"""
+	if t_diameter > diameter:
+		raise WTF, 'Tool diameter can\'t be bigger than the circle\'s diameter.'
 	if (not hole) and (not inside):
 		print 'WTF'
 	r = .5*diameter
