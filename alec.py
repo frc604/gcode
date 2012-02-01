@@ -38,7 +38,7 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 			print 'G00 Z%s' %(rapid_h)
 	"""		
 			
-	print 'G00 %s %s' %(round(new_x, 4), round(c_y, 4))
+	print 'G00 X%s Y%s' %(round(new_x, 4), round(c_y, 4))
 	print 'G01 F10 %s' %(round(c_z, 4))
 	while d_cut <= z_depth:
 		print 'G17 G03 I%s Z-%s' %(round(i_value, 4), round(d_cut, 4))
