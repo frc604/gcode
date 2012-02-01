@@ -11,7 +11,7 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 	If not spiral, plunge
 	If not hole, pocket
 	"""
-	if t_diameter > diameter:
+	if (t_diameter > diameter) and inside:
 		raise WTF, 'Tool diameter can\'t be bigger than the circle\'s diameter.'
 	if (not hole) and (not inside):
 		print 'WTF'
