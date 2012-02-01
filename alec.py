@@ -43,7 +43,7 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 	if inside:
 		G023 = 'G03'
 	else:
-		G023 = 'GO2'
+		G023 = 'G02'
 	print 'G00 X%s Y%s' %(round(new_x, 4), round(c_y, 4))
 	print 'G01 F10 Z%s' %(round(c_z, 4))
 	z_new = c_z - z_depth
