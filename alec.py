@@ -76,8 +76,8 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 	
 		
 if __name__ == "__main__":
-        circle(diameter=10, centerpt=[1,1,-1], t_diameter=5, d_cut=.26, z_depth=10, rapid_h=1, inside=True, spiral=True, hole=True)
-"""
+        #circle(diameter=10, centerpt=[1,1,-1], t_diameter=5, d_cut=.26, z_depth=10, rapid_h=1, inside=True, spiral=True, hole=True)
+
 	while True:
 		diameter=input('Diameter of circle=')
 		cp_x = input('Centerpoint, x-coord: =')
@@ -95,5 +95,4 @@ if __name__ == "__main__":
 		hole_ans = raw_input('Hole or Pocket? [H/p] ')
 		hole = hole_ans.lower() != 'p'
 		circle(diameter=diameter, centerpt=cp, t_diameter=t_diameter, d_cut=d_cut, z_depth=z_depth, rapid_h=rapid_h, inside=inside, spiral=spiral, hole=hole)
-	
-"""
+
