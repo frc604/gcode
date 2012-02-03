@@ -3,7 +3,7 @@ import sys, math
 class WTF(Exception):
 	"""WTF are you doing."""
 
-def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True, spiral=True, hole=True):
+def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, feed_r, inside=True, spiral=True, hole=True):
 	"""
 	Radius should be a float
 	Center point should be a list of three floats [1.0, 1.0, 1.0]
@@ -33,7 +33,7 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 	if inside and (not hole):
 		new_x = c_x - t_r
 			print 'G00 %s %s' %(new_x, c_y)
-			print 'G01 F10 %s' %(c_z)
+			print 'G01 F%s %s' %(feed_r, c_z)
 			while d_cut =< z_depth:
 				print 'G17 G03 I%s Z-%s' %(i_value, d_cut)
 				d_cut += d_initial
@@ -45,7 +45,7 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, inside=True,
 	else:
 		G023 = 'G02'
 	print 'G00 X%s Y%s' %(round(new_x, 4), round(c_y, 4))
-	print 'G01 F10 Z%s' %(round(c_z, 4))
+	print 'G01 F%s Z%s' %(feed_r, round(c_z, 4))
 	z_new = c_z - z_depth
 	down = d_initial
 	while down <= z_depth:
@@ -88,11 +88,12 @@ if __name__ == "__main__":
 		d_cut = input('d_cut=')
 		z_depth = input('z_depth=')
 		rapid_h = input('rapid_h=')
+		feed_r = input ('feedrate=')
 		in_ans = raw_input('Inside or Outside? [I/o] ')
 		inside = in_ans.lower() != 'o'
 		sp_ans = raw_input('Spiral or Plunge? [S/p] ')
 		spiral = sp_ans.lower() != 'p'
 		hole_ans = raw_input('Hole or Pocket? [H/p] ')
 		hole = hole_ans.lower() != 'p'
-		circle(diameter=diameter, centerpt=cp, t_diameter=t_diameter, d_cut=d_cut, z_depth=z_depth, rapid_h=rapid_h, inside=inside, spiral=spiral, hole=hole)
+		circle(diameter=diameter, centerpt=cp, t_diameter=t_diameter, d_cut=d_cut, z_depth=z_depth, rapid_h=rapid_h, feed_r=feed_r, inside=inside, spiral=spiral, hole=hole)
 
