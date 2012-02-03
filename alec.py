@@ -1,4 +1,4 @@
-import sys, math
+import sys, math, time
 
 class WTF(Exception):
 	"""WTF are you doing."""
@@ -77,13 +77,19 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, feed_r, insi
 		
 if __name__ == "__main__":
         #circle(diameter=10, centerpt=[1,1,-1], t_diameter=5, d_cut=.26, z_depth=10, rapid_h=1, inside=True, spiral=True, hole=True)
-
-	while True:
+	coord = 1
+	q = 'q'
+	multiple = raw_input('Will you be inputting multiple coordinates? [Y/n] ')
+	if multiple.lower() != 'n':	
+		while True:
+			exec "cp_x%s = input('Centerpoint-%s, x-coord: =')" %(coord, coord)
+			exec "cp_check = cp_x%s" %(coord)
+			if cp_check == 'q':
+				break
+			exec "cp_y%s = input('Centerpoint-%s, y-coord: =')" %(coord, coord)
+			exec "cp_z%s = input('Centerpoint-%s, z-coord: =')" %(coord, coord)
+			coord += 1
 		diameter=input('Diameter of circle=')
-		cp_x = input('Centerpoint, x-coord: =')
-		cp_y = input('Centerpoint, y-coord: =')
-		cp_z = input('Centerpoint, z-coord: =')
-		cp = [cp_x, cp_y, cp_z]
 		t_diameter = input('Tool diameter=')
 		d_cut = input('d_cut=')
 		z_depth = input('z_depth=')
@@ -95,5 +101,30 @@ if __name__ == "__main__":
 		spiral = sp_ans.lower() != 'p'
 		hole_ans = raw_input('Hole or Pocket? [H/p] ')
 		hole = hole_ans.lower() != 'p'
-		circle(diameter=diameter, centerpt=cp, t_diameter=t_diameter, d_cut=d_cut, z_depth=z_depth, rapid_h=rapid_h, feed_r=feed_r, inside=inside, spiral=spiral, hole=hole)
+		z = 1
+		while z != coord:
+			exec "circle(diameter=diameter, centerpt=[cp_x%s, cp_y%s, cp_z%s], t_diameter=t_diameter, d_cut=d_cut, z_depth=z_depth, rapid_h=rapid_h, feed_r=feed_r, inside=inside, spiral=spiral, hole=hole)" %(z, z, z)
+			#print '----------------'
+			z +=1			
+	
+	else:
+	
+		while True:
+			diameter=input('Diameter of circle=')
+			cp_x = input('Centerpoint, x-coord: =')
+			cp_y = input('Centerpoint, y-coord: =')
+			cp_z = input('Centerpoint, z-coord: =')
+			cp = [cp_x, cp_y, cp_z]
+			t_diameter = input('Tool diameter=')
+			d_cut = input('d_cut=')
+			z_depth = input('z_depth=')
+			rapid_h = input('rapid_h=')
+			feed_r = input ('feedrate=')
+			in_ans = raw_input('Inside or Outside? [I/o] ')
+			inside = in_ans.lower() != 'o'
+			sp_ans = raw_input('Spiral or Plunge? [S/p] ')
+			spiral = sp_ans.lower() != 'p'
+			hole_ans = raw_input('Hole or Pocket? [H/p] ')
+			hole = hole_ans.lower() != 'p'
+			circle(diameter=diameter, centerpt=cp, t_diameter=t_diameter, d_cut=d_cut, z_depth=z_depth, rapid_h=rapid_h, feed_r=feed_r, inside=inside, spiral=spiral, hole=hole)
 
