@@ -62,12 +62,13 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, feed_r, insi
 		print 'G17 %s I%s Z%s' %(G023, round(i_value, 4), round(c_z-d_cut, 4))
 		d_cut += d_initial
         """
-	if d_cut != z_depth:
-		if spiral:
-			print 'G17 %s I%s Z%s' %(G023, round(i_value, 4), round(c_z-z_depth, 4))
-		else:
-			print 'G01 Z%s' %(round(c_z-z_depth, 4))
-			print 'G17 %s I%s' %(G023, round(i_value, 4))
+	if z_depth%d_initial != 0: #if evenly divisible, it will duplicate the line, which isnt needed
+		if d_cut != z_depth:
+			if spiral:
+				print 'G17 %s I%s Z%s' %(G023, round(i_value, 4), round(c_z-z_depth, 4))
+			else:
+				print 'G01 Z%s' %(round(c_z-z_depth, 4))
+				print 'G17 %s I%s' %(G023, round(i_value, 4))
 	if spiral:
 		print 'G17 %s I%s' %(G023, round(i_value, 4))
 	print 'G00 Z%s' %(round(rapid_h, 4))
@@ -76,7 +77,7 @@ def circle(diameter, centerpt, t_diameter, d_cut, z_depth, rapid_h, feed_r, insi
 	
 		
 if __name__ == "__main__":
-        #circle(diameter=10, centerpt=[1,1,-1], t_diameter=5, d_cut=.26, z_depth=10, rapid_h=1, inside=True, spiral=True, hole=True)
+	#circle(diameter=10, centerpt=[0,0,0], t_diameter=1, d_cut=.25, z_depth=3.5, rapid_h=1, feed_r=1, inside=True, spiral=True, hole=True)
 	coord = 1
 	q = 'q'
 	multiple = raw_input('Will you be inputting multiple coordinates? [Y/n] ')
