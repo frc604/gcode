@@ -1,4 +1,6 @@
-import sys, math, time
+import sys
+import math
+import time
 
 class WTF(Exception):
 	"""WTF are you doing."""
