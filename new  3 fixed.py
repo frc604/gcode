@@ -38,7 +38,5 @@ class App:
         self.tc.set('%f' % math.sin(float(int(self.t.get())))) # construct string
 
 root = Tk()
-
 App = App(root)
-
 root.mainloop()
